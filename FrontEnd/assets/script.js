@@ -22,7 +22,7 @@ async function addWorksToGallery() {
 }
 
 
-// Fonction: masque les figures non demandés (filtre) en activant le "display:none"
+// Fonction: masque les figures non demandés (filtre) en activant le "display:none" via Class
 function filterWorksToGallery(category) {
     const figures = document.querySelectorAll(".gallery figure");
     for (i = 0; i < figures.length; i++) {
