@@ -125,6 +125,29 @@ li:hover {
 	text-align: center;
 	margin-bottom: 1em;
 }
+
+.filterGallery {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	margin-bottom: 2em;
+}
+
+.filterGallery-btn {
+	border: 1px solid #1D6154;
+	border-radius: 60px;
+	background-color: transparent;
+	font-family: 'Syne';
+	color: #1D6154;
+	font-size: 16px;
+	padding: 9px 20px;
+}
+
+.filterGallery-btn:hover, .btn-active {
+	background-color: #1D6154;
+	color: white;
+}
+
 .gallery {
 	width: 100%;
 	display: grid;
@@ -137,6 +160,11 @@ li:hover {
 	width: 100%;
 
 }
+
+.figureHidden {
+	display: none;
+}
+
 #contact {
 	width: 50%;
 margin: auto;
