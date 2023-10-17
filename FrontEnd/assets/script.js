@@ -1,13 +1,12 @@
-// Fonction: Recepurer et stocker les travaux de l'architecte dans le localStorage depuis API au lancement HTML + Afficher les travaux à la galerie
+// Fonction: Recepurer et affricher les travaux de l'architecte à la galerie
 async function addWorksToGallery() {
     const works = await fetch("http://localhost:5678/api/works").then(works => works.json());
-    window.localStorage.setItem("works", JSON.stringify(works));
 
     const gallery = document.querySelector(".gallery");
 
     for (work of works) {
         const figure = document.createElement("figure");
-        figure.className = "categoryId" + work.categoryId;
+        figure.dataset.categoryId = work.categoryId;
         const figureImg = document.createElement("img");
         figureImg.src = work.imageUrl;
         figureImg.alt = work.title;
@@ -22,11 +21,11 @@ async function addWorksToGallery() {
 }
 
 
-// Fonction: masque les figures non demandés (filtre) en activant le "display:none" via Class
-function filterWorksToGallery(category) {
+// Fonction: masque les figures non demandés (filtre) en activant le "display:none" via dataSet
+function filterWorksToGallery(categoryId) {
     const figures = document.querySelectorAll(".gallery figure");
     for (i = 0; i < figures.length; i++) {
-        if (figures[i].className.includes(category)) {
+        if (figures[i].dataset.categoryId === categoryId || categoryId === "0") {
             figures[i].classList.remove("figureHidden");
         } else {
             figures[i].classList.add("figureHidden");
@@ -49,16 +48,16 @@ filterButtons.forEach((button) => {
 
         switch (button.className) {
             case 'filterGallery-btn filterAll':
-                filterWorksToGallery("");
+                filterWorksToGallery("0");
                 break;
             case 'filterGallery-btn filterObjects':
-                filterWorksToGallery("categoryId1");
+                filterWorksToGallery("1");
                 break;
             case 'filterGallery-btn fitlerApartments':
-                filterWorksToGallery("categoryId2");
+                filterWorksToGallery("2");
                 break;
             case 'filterGallery-btn filterHotelsRestaurants':
-                filterWorksToGallery("categoryId3");
+                filterWorksToGallery("3");
                 break;
             default:
                 console.error("Ce bouton ne correspond à aucun case (switch).");

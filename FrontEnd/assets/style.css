@@ -150,6 +150,8 @@ li:hover {
 	color: #1D6154;
 	font-size: 16px;
 	padding: 9px 20px;
+	cursor: pointer;
+	transition: all 250ms ease;
 }
 
 .filterGallery-btn:hover, .btn-active {
@@ -198,6 +200,7 @@ margin: auto;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
+
 #contact label, #login label {
 	margin: 2em 0 1em 0;
 }
@@ -213,7 +216,7 @@ margin: auto;
 
 #login {
 	margin-top: 150px;
-	margin-bottom: 150px;
+	margin-bottom: 100px;
 }
 
 input[type="submit"]{
@@ -226,6 +229,16 @@ input[type="submit"]{
 	text-align: center;
 	border-radius: 60px ;
 	cursor: pointer;
+	transition: all 250ms;
+}
+
+input[type="submit"]:hover { 
+	background-color: #3b8d7e;
+}
+
+input[type="submit"]:disabled {
+	background-color: rgb(180, 180, 180);
+	cursor: default;
 }
 
 footer nav ul {
@@ -233,4 +246,15 @@ footer nav ul {
 	display: flex;
 	justify-content: flex-end;
 	padding: 2em;
+}
+
+.errorLogin {
+	display: none;
+	margin-top: 30px;
+	min-height: 50px;
+	line-height: 50px;
+	border: 1px solid red;
+	background-color: rgb(255, 100, 100);
+	color: white;
+	text-align: center;
 }
