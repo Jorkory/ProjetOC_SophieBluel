@@ -1,41 +1,21 @@
-// Fonction: Recepurer et affricher les travaux de l'architecte à la galerie
-async function addWorksToGallery() {
-    const works = await fetch("http://localhost:5678/api/works").then(works => works.json());
+import { addWorksToGallery, filterWorksToGallery } from "./gallery.js";
 
-    const gallery = document.querySelector(".gallery");
-
-    for (work of works) {
-        const figure = document.createElement("figure");
-        figure.dataset.categoryId = work.categoryId;
-        const figureImg = document.createElement("img");
-        figureImg.src = work.imageUrl;
-        figureImg.alt = work.title;
-        figure.appendChild(figureImg);
-
-        const figcapture = document.createElement("figcapture");
-        figcapture.innerText = work.title;
-        figure.appendChild(figcapture);
-
-        gallery.appendChild(figure);
-    }
-}
-
-
-// Fonction: masque les figures non demandés (filtre) en activant le "display:none" via dataSet
-function filterWorksToGallery(categoryId) {
-    const figures = document.querySelectorAll(".gallery figure");
-    for (i = 0; i < figures.length; i++) {
-        if (figures[i].dataset.categoryId === categoryId || categoryId === "0") {
-            figures[i].classList.remove("figureHidden");
-        } else {
-            figures[i].classList.add("figureHidden");
-        }
-    }
-}
-
-// Lancement HTML
+// Lancement HTML: generer les images sur la page d'accueil depuis API
 addWorksToGallery()
 
+// Vérifier l'état de connexion
+const connect = JSON.parse(window.localStorage.getItem("login"));
+const buttonLogin = document.querySelector(".buttonLogin");
+
+if (connect) {
+    buttonLogin.querySelector("li").innerText = "Logout";
+    buttonLogin.href = "./index.html";
+    buttonLogin.addEventListener('click', (event) => {
+        event.preventDefault();
+        window.localStorage.removeItem("login");
+        location.href = buttonLogin.href;
+    })
+}
 
 // Barre de filtres, lorsque on clique sur le bouton de filtre => appeler la fonction qui va gerer les figures + CSS des boutons
 const filterButtons = document.querySelectorAll(".filterGallery-btn");
@@ -65,3 +45,8 @@ filterButtons.forEach((button) => {
         button.classList.add("btn-active")
     })
 })
+
+
+
+
+

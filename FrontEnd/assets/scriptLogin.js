@@ -6,7 +6,7 @@ formLogin.addEventListener('submit', async (event) => {
     event.preventDefault();
     buttonSubmit.setAttribute("disabled", "");
 
-    const emailValue = event.target.querySelector("#email").value;
+    const emailValue = event.target.querySelector("#email").value.toLowerCase();
     const passwordValue = event.target.querySelector("#password").value;
 
     if (validateInputs(emailValue, passwordValue)) {
@@ -22,8 +22,9 @@ formLogin.addEventListener('submit', async (event) => {
                 body: JSON.stringify(login)
             });
 
-            if (response.ok) { 
-                window.localStorage.setItem("login", response);
+            if (response.ok) {
+                const res = await response.json();
+                window.localStorage.setItem("login", JSON.stringify(res));
                 location.href = "../index.html" 
             }
             else {
