@@ -1,23 +1,11 @@
 import { addWorksToGallery, filterWorksToGallery } from "./gallery.js";
+import {isConnect} from "./connect.js";
 
 // Lancement HTML: generer les images sur la page d'accueil depuis API
 addWorksToGallery()
 
-// Vérifier l'état de connexion
-const connect = JSON.parse(window.localStorage.getItem("login"));
-const buttonLogin = document.querySelector(".buttonLogin");
 
-if (connect) {
-    buttonLogin.querySelector("li").innerText = "Logout";
-    buttonLogin.href = "./index.html";
-    buttonLogin.addEventListener('click', (event) => {
-        event.preventDefault();
-        window.localStorage.removeItem("login");
-        location.href = buttonLogin.href;
-    })
-}
-
-// Barre de filtres, lorsque on clique sur le bouton de filtre => appeler la fonction qui va gerer les figures + CSS des boutons
+// Barre de filtres
 const filterButtons = document.querySelectorAll(".filterGallery-btn");
 filterButtons[0].classList.add("btn-active");
 filterButtons.forEach((button) => {
@@ -47,6 +35,49 @@ filterButtons.forEach((button) => {
 })
 
 
+// Vérifier l'état de connexion
+const connect = JSON.parse(window.localStorage.getItem("login"));
+const buttonLogin = document.querySelector(".buttonLogin");
+if (connect) {
+    isConnect(buttonLogin);
+}
 
 
 
+//Dialog: Ouvrir ou Fermer
+const btnModalModif = document.querySelector(".btn-modal-modif");
+const dialogModal1= document.querySelector("#modal1");
+const btnCloseModal = document.querySelector(".btn-closeModal");
+const dialogContainer = document.querySelector(".dialog-container");
+const modalContainer = document.querySelector(".modal1-wrapper")
+
+const openModal = (event) => {
+    event.preventDefault();
+    dialogModal1.showModal(); 
+}
+
+const closeModal = (event) => {
+    event.preventDefault();
+    dialogModal1.close();    
+}
+
+btnModalModif.addEventListener('click', openModal)
+btnCloseModal.addEventListener('click', closeModal)
+dialogContainer.addEventListener('click', closeModal)
+modalContainer.addEventListener('click', (e) => e.stopPropagation());
+
+// Dialog: Generer les photos de la galerie dans la fenetre de modale
+const modalGallery = document.querySelector(".modalGallery");
+const worksJSON = window.localStorage.getItem("works");
+const works = JSON.parse(worksJSON);
+
+for (const work of works) {
+    const figure = document.createElement("figure");
+    const figureImg = document.createElement("img");
+    figureImg.src = work.imageUrl;
+    const figureBtnDel = document.createElement("i");
+    figureBtnDel.className = "btn-delete fa-solid fa-trash-can"
+    figure.appendChild(figureImg);
+    figure.appendChild(figureBtnDel)
+    modalGallery.appendChild(figure);
+}

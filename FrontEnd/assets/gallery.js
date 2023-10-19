@@ -1,6 +1,7 @@
 // Fonction: Recepurer et affricher les travaux de l'architecte à la galerie
 export async function addWorksToGallery() {
     const works = await fetch("http://localhost:5678/api/works").then(works => works.json());
+    window.localStorage.setItem("works", JSON.stringify(works));
     const gallery = document.querySelector(".gallery");
 
     for (const work of works) {

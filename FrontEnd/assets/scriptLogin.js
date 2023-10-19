@@ -1,6 +1,6 @@
 const formLogin = document.getElementById("formLogin");
 const buttonSubmit = formLogin.querySelector("[type=submit]"); // Sert pour desactiver le bouton pendant le temps d'attendre la reponse d'API
-const messageErrorLogin = document.querySelector(".errorLogin"); // Sert pour affricher la message d'erreur de login
+const messageErrorLogin = document.querySelector(".errorLogin"); // Sert pour afficher la message d'erreur de login
 
 formLogin.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -36,7 +36,7 @@ formLogin.addEventListener('submit', async (event) => {
                         messageErrorLogin.innerText = "Le mot de passe entré est incorrect.";
                         break;
                     default:
-                        messageErrorLogin.innerText = "Erreur rencontré, aucun 'case' se correspond dans 'switch'."
+                        messageErrorLogin.innerText = "Erreur rencontré, aucun 'case' correspondant dans 'switch'."
                 }
                 messageErrorLogin.style = "display:block"
             }
