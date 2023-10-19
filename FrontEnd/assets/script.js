@@ -47,8 +47,7 @@ if (userConnect) {
     const btnModalModif = document.querySelector(".btn-modal-modif");
     const dialogModal1= document.querySelector("#modal1");
     const btnCloseModal = document.querySelector(".btn-closeModal");
-    const dialogContainer = document.querySelector(".dialog-container");
-    const modalContainer = document.querySelector(".modal1-wrapper")
+    const modalContainer = document.querySelector(".modal1-container")
 
     const openModal = (event) => {
         event.preventDefault();
@@ -62,7 +61,7 @@ if (userConnect) {
 
     btnModalModif.addEventListener('click', openModal)
     btnCloseModal.addEventListener('click', closeModal)
-    dialogContainer.addEventListener('click', closeModal)
+    dialogModal1.addEventListener('click', closeModal)
     modalContainer.addEventListener('click', (e) => e.stopPropagation());
 
     // Dialog: Generer les photos de la galerie dans la fenetre de modale

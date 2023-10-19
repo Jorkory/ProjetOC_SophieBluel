@@ -305,30 +305,27 @@ footer nav ul {
 
 
 /* Modal */
-.dialog-container {
-	position: fixed;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	left: 0;
-	top: 50px;
-	width: 100%;
-	height: 100%;
+#modal1::backdrop {
 	background-color: rgba(0, 0, 0, 0.3);
 }
 
-.modal1-wrapper {
+#modal1 {
+	padding: 0;
+	border: none;
+	border-radius: 10px;
+}
+
+.modal1-container {
 	position: relative;
 	width: 630px;
 	height: 690px;
 	background-color: #FFF;
-	border-radius: 10px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;	
 }
 
-.modal1-wrapper h2 {
+.modal1-container h2 {
 	font-family: 'Work Sans';
 	font-weight: 400;
 	margin-top: 60px;
