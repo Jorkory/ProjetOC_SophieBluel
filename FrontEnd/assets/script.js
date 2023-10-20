@@ -1,4 +1,4 @@
-import { addWorksToGallery, filterWorksToGallery } from "./gallery.js";
+import { addWorksToGallery, filterWorksToGallery, DeleteWorkFromGallery, addWorksToGalleryDialog } from "./gallery.js";
 import {isConnect} from "./connect.js";
 
 // Lancement HTML: generer les images sur la page d'accueil depuis API
@@ -51,6 +51,7 @@ if (userConnect) {
 
     const openModal = (event) => {
         event.preventDefault();
+        addWorksToGalleryDialog();
         dialogModal1.showModal(); 
     }
 
@@ -63,21 +64,5 @@ if (userConnect) {
     btnCloseModal.addEventListener('click', closeModal)
     dialogModal1.addEventListener('click', closeModal)
     modalContainer.addEventListener('click', (e) => e.stopPropagation());
-
-    // Dialog: Generer les photos de la galerie dans la fenetre de modale
-    const modalGallery = document.querySelector(".modalGallery");
-    const worksJSON = window.localStorage.getItem("works");
-    const works = JSON.parse(worksJSON);
-
-    for (const work of works) {
-        const figure = document.createElement("figure");
-        const figureImg = document.createElement("img");
-        figureImg.src = work.imageUrl;
-        const figureBtnDel = document.createElement("i");
-        figureBtnDel.className = "btn-delete fa-solid fa-trash-can"
-        figure.appendChild(figureImg);
-        figure.appendChild(figureBtnDel)
-        modalGallery.appendChild(figure);
-    }
-
+    
 }
