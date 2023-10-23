@@ -1,8 +1,9 @@
 // Afficher la page d'accueil en mode Edition
 
-export function isConnect(buttonLogin) {
+export function isConnect() {
 
     // Modifier le bouton "Login" => "Logout"
+    const buttonLogin = document.querySelector(".buttonLogin");
     buttonLogin.querySelector("li").innerText = "Logout";
     buttonLogin.href = "#";
     buttonLogin.addEventListener('click', (event) => {
@@ -25,6 +26,15 @@ export function isConnect(buttonLogin) {
     btnModal.className = "btn-modal-modif";
     btnModal.innerHTML = `<i class="fa-regular fa-pen-to-square"></i> Modifier`
     paraProjet.appendChild(btnModal);
+
+    // Ajouter le script de modals.js au HTML
+    const head = document.querySelector("head");
+    const scriptModals = document.createElement("script");
+    scriptModals.setAttribute("src", "./assets/modals.js");
+    scriptModals.setAttribute("type", "module");
+    scriptModals.setAttribute("defer", "");
+    head.appendChild(scriptModals);
+
 
     // Supprimer la barre de filtre
     const barFilter = document.querySelector(".filterGallery");

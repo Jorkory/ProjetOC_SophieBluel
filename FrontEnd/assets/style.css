@@ -198,11 +198,14 @@ margin: auto;
 	flex-direction: column;
 }
 
-#contact input, #login input {
+#contact input, #login input, #formAddWork input, #formAddWork select {
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	font-family: 'Work Sans';
+	font-size: 14px;
+	padding-left: 20px;
 }
 
 #contact label, #login label {
@@ -243,12 +246,12 @@ input[type="submit"] {
 	transition: all 250ms;
 }
 
-input[type="submit"]:hover, .btn:hover { 
+input[type="submit"]:hover, .btn-addWork:hover, .btn-addWork-Valid:hover { 
 	background-color: #0E2F28;
 }
 
-input[type="submit"]:disabled {
-	background-color: rgb(180, 180, 180);
+input[type="submit"]:disabled, .btn-addWork-Valid:disabled {
+	background-color: #A7A7A7;
 	cursor: default;
 }
 
@@ -306,16 +309,21 @@ footer nav ul {
 
 /* Modal */
 #modal1::backdrop {
+	margin-top: 50px;
 	background-color: rgba(0, 0, 0, 0.3);
 }
 
-#modal1 {
+#modal2::backdrop {
+	background-color: rgba(0, 0, 0, 0);
+}
+
+dialog {
 	padding: 0;
 	border: none;
 	border-radius: 10px;
 }
 
-.modal1-container {
+.modal-container {
 	position: relative;
 	width: 630px;
 	height: 690px;
@@ -325,7 +333,7 @@ footer nav ul {
 	align-items: center;	
 }
 
-.modal1-container h2 {
+.title-modal {
 	font-family: 'Work Sans';
 	font-weight: 400;
 	margin-top: 60px;
@@ -333,7 +341,7 @@ footer nav ul {
 	color: black;
 }
 
-.btn-closeModal {
+.btn-close {
 	position: absolute;
 	top: 30px;
 	right: 30px;
@@ -343,7 +351,17 @@ footer nav ul {
 	cursor: pointer;
 }
 
-.modalGallery-container {
+.btn-backModal {
+	position: absolute;
+	top: 30px;
+	left: 30px;
+	border: none;
+	background-color: transparent;
+	font-size: 24px;
+	cursor: pointer;
+}
+
+.modalGallery-container, .modalAddWork-container {
 	flex: 1;
 	width: 70%;
 	border-bottom: 1px solid #B3B3B3;
@@ -376,7 +394,8 @@ footer nav ul {
 	font-size: 14px;
 }
 
-.btn {
+.btn-addWork, .btn-addWork-Valid {
+	width: 240px;
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
@@ -391,3 +410,92 @@ footer nav ul {
 	margin-top: 45px;
 	margin-bottom: 45px;
 }
+
+#formAddWork {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.modalFile {
+	height: 170px;
+	width: 100%;
+	background-color: #E8F1F6;
+	border-radius: 3px;
+}
+
+.modalFileOption {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 6px;
+	align-items: center;
+}
+
+.modalFile img {
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+
+}
+
+.modalFileOption i {
+	font-size: 76px;
+	color: #B9C5CC
+}
+
+.modalFileOption #labelAddFile {
+	color: #306685;
+	font-weight: 500;
+	font-family: 'Work Sans';
+	font-size: 14px;
+	padding: 10px 33px;
+	border: none;
+	border-radius: 50px;
+	background-color: #CBD6DC;
+	cursor: pointer;
+	margin: 0;
+}
+
+.modalFileOption input[type="file"] {
+	display: none;
+}
+
+.modalFileOption p {
+	font-size: 10px;
+}
+
+.modalAddWork-container {
+	display: flex;
+	flex-direction: column;
+	overflow:visible;
+}
+
+.modalAddWork-container label {
+	margin-top: 40px;
+	margin-bottom: 10px;
+}
+
+.notification {
+	position: absolute;
+	bottom: 128px;
+	width: 65%;
+	background-color: rgb(52, 187, 52);
+	border: 5px solid white;
+	border-radius: 10px;
+	padding: 20px;
+	font-size: 16px;
+	color: white;
+	text-align: center;
+	opacity: 1;
+	transition: opacity 300ms ease;
+}
+
+.notification.hide {
+	opacity: 0;
+}
+
