@@ -2,7 +2,6 @@ import {addWorksToGalleryModal} from "./modalManageGallery.js";
 import {modalAddWork} from "./modalAddWork.js";
 import {validInput} from "./modalAddWork.js";
 import { loadShowImg } from "./modalAddWork.js";
-import { submitFormData } from "./modalAddWork.js";
 
 const dialogManageGallery =  `
     <div class="modal-container" >
@@ -41,7 +40,7 @@ const dialogAddWork = `
                     <option value="3">Hôtels & restaurants</option>
                 </select>
             </div>
-            <button class="btn-addWork-Valid" disabled>Valider</button>
+            <button class="btn-addWork-Valid">Valider</button>
         </form>	
     </div>
 `
@@ -93,7 +92,7 @@ btnBackModal.addEventListener('click', () => {
 })
 
 const btnValidForm = document.querySelector(".btn-addWork-Valid");
-btnValidForm.addEventListener('click', (event) => submitFormData(event));
+btnValidForm.addEventListener('click', (event) => validInput(event));
 
 //Input Image
 const btnFile = document.getElementById("btn-addFile");
@@ -104,11 +103,11 @@ btnFile.addEventListener('change', (event) => {
     
 //Input Titre
 const inputTitleImg = document.querySelector("#titleImg");
-inputTitleImg.addEventListener('change', (event) => {validInput()});
+inputTitleImg.addEventListener('change', () => {validInput()});
 
 //Input Categorie
 const selectCategoryImg = document.querySelector("#categoryImg");
-selectCategoryImg.addEventListener('change', (event) => {validInput()}); 
+selectCategoryImg.addEventListener('change', () => {validInput()}); 
 
 
 //Generer les dialogs
@@ -125,4 +124,25 @@ function addDialogs() {
     dialog2.innerHTML += dialogAddWork;
     portfolio.appendChild(dialog2); 
 
+}
+
+
+// Notification
+export function notification(modalId, color, message) {
+    let modal = null;
+    if (modalId === 1) {
+        modal = document.getElementById("modal1");
+    }
+    else if (modalId === 2) {
+        modal = document.getElementById("modal2");
+    }
+    const notification = document.createElement("div");
+    notification.className = "notification " + color;
+    notification.innerHTML = message;
+    modal.querySelector(".modal-container").appendChild(notification);
+    
+    setTimeout(() => {
+        notification.classList.add("hide");
+        setTimeout(() => {notification.remove();}, 300)
+    }, 2000)    
 }

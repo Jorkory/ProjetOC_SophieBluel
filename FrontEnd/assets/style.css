@@ -411,6 +411,11 @@ dialog {
 	margin-bottom: 45px;
 }
 
+.btn-addWork-Valid.disabled {
+	background-color: #A7A7A7;
+	cursor: default;
+} 
+
 #formAddWork {
 	height: 100%;
 	width: 100%;
@@ -482,10 +487,8 @@ dialog {
 
 .notification {
 	position: absolute;
-	bottom: 128px;
+	bottom: 90px;
 	width: 65%;
-	background-color: rgb(52, 187, 52);
-	border: 5px solid white;
 	border-radius: 10px;
 	padding: 20px;
 	font-size: 16px;
@@ -493,6 +496,14 @@ dialog {
 	text-align: center;
 	opacity: 1;
 	transition: opacity 300ms ease;
+}
+
+.notification.green {
+	background-color: rgb(52, 187, 52);
+}
+
+.notification.red {
+	background-color: rgb(255, 100, 100);
 }
 
 .notification.hide {

@@ -1,3 +1,4 @@
+import { notification } from "./modals.js";
 // Fonction: Generer les photos de la galerie dans la fenetre de modale
 export function addWorksToGalleryModal(addWork) {
     const modalGallery = document.querySelector(".modalGallery");
@@ -59,26 +60,10 @@ async function DeleteWorkFromGallery(btnTrashHTML) {
                 }
             }
             workToDelete.remove();
-            notification()
+            notification(1, "green", `<i class="fa-regular fa-circle-check"></i> La photo a été supprimée avec succès.`)
         }
-   } 
-   catch {
-        console.error("Nous avons rencontré un problème, veuillez réessayer ultérieurement.");
+    } 
+    catch {
+        notification(1, "red", `<i class="fa-solid fa-triangle-exclamation"></i> Nous avons rencontré un problème, veuillez réessayer ultérieurement.`)
     }
-}
-
-//Notification
-function notification() {
-    const modal = document.querySelector(".modal-container");
-    const notification = document.createElement("div");
-    notification.className = "notification";
-    notification.innerHTML = `<i class="fa-regular fa-circle-check"></i> La photo a été supprimée avec succès.`;
-    modal.appendChild(notification);
-    
-    document.querySelector("#modal2").close();
-    
-    setTimeout(() => {
-        notification.classList.add("hide");
-        setTimeout(() => {notification.remove();}, 300)
-    }, 1400)    
 }
