@@ -4,7 +4,7 @@ export function isConnect() {
 
     // Modifier le bouton "Login" => "Logout"
     const buttonLogin = document.querySelector(".buttonLogin");
-    buttonLogin.querySelector("li").innerText = "Logout";
+    buttonLogin.innerText = "Logout";
     buttonLogin.href = "#";
     buttonLogin.addEventListener('click', (event) => {
         event.preventDefault();
